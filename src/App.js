@@ -1,20 +1,19 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, { Component } from 'react';
+import { Scene, Router } from 'react-native-router-flux';
 
-import Login from './component/login/Login';
+import PlayerList from './PlayerList'
+import GamePending from './GamePending'
+import Game from './Game'
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    }
-});
 
-export default class App extends React.Component {
+export default class App extends Component {
     render () {
-        return (
-            <View style={styles.container}>
-                <Login/>
-            </View>
-        );
+        return <Router>
+            <Scene key="root">
+                <Scene key="player_list" component={PlayerList} title="Player List" sceneStyle={{ flex: 1, paddingTop: 80 }}/>
+                <Scene key="game_pending" component={GamePending} title="Game Pending" sceneStyle={{ flex: 1, paddingTop: 80 }}/>
+                <Scene key="game" component={Game} title="Game" sceneStyle={{ flex: 1, paddingTop: 80 }}/>
+            </Scene>
+        </Router>
     }
 }
